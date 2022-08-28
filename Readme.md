@@ -63,5 +63,11 @@ Install Ansible latest package on the controller node ONLY.
   - Make sure Ansible is correctly installed and check the version.
     - ansible --version
 
+Remote node computers must be accessible from the control node through SSH otherwise, Ansible can't operate! 
 
 ## Ansible Inventory
+Ansble inventory file lists the set of named remote target nodes that needs to be managed from this Ansible controller. We can group nodes by naming them - [db]. Groups can be grouped again to create bigger groups.
+
+Ansible command could then be used to control and test nodes by using it's name in the inventory file.
+ - ansible node_name -m ping -i inventory.txt
+
