@@ -1,0 +1,67 @@
+# Ansible
+
+## Setup the environment
+Download and install latest version of VirtualBox.
+  - https://www.virtualbox.org/wiki/Downloads
+
+Download CentOS 7 (latest the better) from OS Boxes website.
+  - https://www.osboxes.org/centos
+
+Create the "template" VM with following settings.
+  - Name: centos-template.
+  - Type: Linux.
+  - Version: Other Linux (64-bit).
+  - Memory: 2048.
+  - Use an existing VHD option and select the image downloaded.
+  - Create the VM.
+
+Change the following settings before starting the VM.
+  - System > Processors: 2.
+  - Network > Adapter 1 > Attached to: Bridge Adapter.
+
+Power on the VM. Use the username password details specified in the OS Boxes website for the image downloaded (under info tab).
+  - Username: osboxes
+  - Password: osboxes.org
+
+Once, logged into the VM open a terminal and issue an "ifconfig" command to reveal its IP Address. Then, use the Mac terminal or any other SSH connection tool to make sure we can SSH into it. For Macs: Use command "ssh osboxes@IP_ADDRESS" and enter the password "osboxes.org" when prompted.
+
+Right-click on the "centos-template" VM to create the Ansible controller node with the following settings.
+  - Name: ansiblecontroller
+  - MAC Address Policy: Generate new MAC address for all network adaptors.
+  - Clone type: Linked clone.
+  - Click on Clone.
+
+Create 2 more VMs to be used as Ansible target nodes (2). Just follow the same steps used above to create the controller node.
+  - ansible-target1.
+  - ansible-target2.
+
+Follow these steps in the controller node and 2 target nodes to change their hostnames.
+  - Start the VM.
+  - Run "ifconfig" command in a terminal and note the IP Address of it.
+  - Start a SSH session using Mac terminal or any other SSH tool.
+    - Username: osboxes
+    - Password: osboxes.org
+  - Change the hostnames file.
+    - sudo vi /etc/hostnames
+    - Press the key "I" to enter the edit mode.
+    - Change value to ansiblecontroller / target1 / target2 (depending on the VM).
+    - Press ESC, and type ":wq!" to save the file.
+  - Change the hosts file.
+    - sudo vi /etc/host
+    - Press the key "I" to enter the edit mode.
+    - Replace the current values with ansiblecontroller / target1 / target2 (depending on the VM).
+    - Press ESC, and type ":wq!" to save the file.
+  - Restert the VM.
+    - sudo shutdown now -r
+
+After restarting the VMs we should see the hostnames have been updated from "osboxes" to the values we specified.
+
+Install Ansible latest package on the controller node ONLY.
+  - sudo yum install ansible
+  - If the installation gives the "No package ansible available" error then, install the "epel-release" package before trying to install Ansible again.
+    - sudo yum install epel-release
+  - Make sure Ansible is correctly installed and check the version.
+    - ansible --version
+
+
+## Ansible Inventory
