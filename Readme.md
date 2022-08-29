@@ -81,3 +81,13 @@ The ftp-sync VSCode extension is good to sync local YAML files to the remote Ans
 Once, the YAML playbook has been composed you can run it by specifying the inventory file.
 - ansible-playbook playbook-pingtest.yaml -i inventory.txt
 
+## Ansible Modules
+Ansible modules are used to compose each task in a playbook. There are many different types of modules are available to use such as,
+ - System modules
+ - Commands
+ - Files
+ - Database
+ - Cloud
+ - Windows
+ - And, many more...
+
