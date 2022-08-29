@@ -71,3 +71,13 @@ Ansble inventory file lists the set of named remote target nodes that needs to b
 Ansible command could then be used to control and test nodes by using it's name in the inventory file.
  - ansible node_name -m ping -i inventory.txt
 
+## Ansible Playbooks
+Download and install VSCode IDE for composing Ansible playbook YAML files. The YAML extension by RedHat is very useful to parse YAML files and catch errors in them!
+
+The yamllint.com website is an external resource to parse YAML files.
+
+The ftp-sync VSCode extension is good to sync local YAML files to the remote Ansible controller computers.
+
+Once, the YAML playbook has been composed you can run it by specifying the inventory file.
+- ansible-playbook playbook-pingtest.yaml -i inventory.txt
+

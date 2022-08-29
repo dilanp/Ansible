@@ -1,0 +1,2 @@
+target1 ansible_host=192.168.0.5 ansible_ssh_pass=Belihul0ya12
+target2 ansible_host=192.168.0.6 ansible_ssh_pass=Belihul0ya12
